@@ -1,0 +1,30 @@
+[project]
+name = "rss-pipes"
+version = "0.1.0"
+description = "Composable RSS feeds utilities, inspired by unix pipes"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi[standard]>=0.115.8",
+    "feedparser>=6.0.11",
+    "httpx>=0.28.1",
+    "jinja2>=3.1.5",
+    "pydantic>=2.10.6",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "beautifulsoup4>=4.13.4",
+    "lxml>=5.4.0",
+    "mypy>=1.15.0",
+    "pytest-asyncio>=0.25.3",
+    "pytest-httpx>=0.35.0",
+    "pytest>=8.3.4",
+    "ruff>=0.9.6",
+]
+
+[tool.ruff.lint]
+select = [
+    "I",  # isort
+    "T20",  # flake8-print
+]

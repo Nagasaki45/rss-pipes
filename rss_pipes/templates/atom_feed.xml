@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  {%- if title %}
+  <title>{{ title }} - {{ frequency }} digest</title>
+  {% endif %}
+  {%- if link %}
+  <link href="{{ link }}"/>
+  {% endif %}
+  {%- if updated %}
+  <updated>{{ updated | dt_isoformat }}</updated>
+  {% endif %}
+  {%- if authors %}
+  <author>
+    {%- for author in authors %}
+    <name>{{ author }}</name>
+    {% endfor %}
+  {% endif %}
+  </author>
+  {%- if id %}
+  <id>{{ id }}</id>
+  {% endif %}
+
+  {%- for digest in digests %}
+  <entry>
+    <title>{{ frequency | capitalize }} digest for {{ digest.date | dt_readable_date }}</title>
+    <id>urn:uuid:digest-{{ digest.date | dt_isoformat }}</id>
+    <published>{{ digest.date | dt_isoformat }}</published>
+    <content type="html">
+    {%- for entry in digest.entries %}
+      <h1><a href="{{ entry.link }}">{{ entry.title }}</a></h1>
+      {%- if entry.published %}
+      <p>Published: {{ entry.published }}</p>
+      {%- endif %}
+      {%- if entry.updated %}
+      <p>Updated: {{ entry.updated }}</p>
+      {%- endif %}
+      {%- if entry.content.strip().startswith("<p>") %}
+      {{ entry.content }}
+      {%- else %}
+      <p>{{ entry.content }}</p>
+      {%- endif %}
+
+    {%- endfor %}
+    </content>
+  </entry>
+
+  {%- endfor %}
+</feed>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>Test Feed - weekly digest</title>
+  <link href="http://example.org/"/>
+  <updated>2024-04-06T10:00:00Z</updated>
+  <author>
+    <name>Test Author</name>
+  </author>
+  <id>urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6</id>
+
+  <entry>
+    <title>Weekly digest for 06 Apr 2024</title>
+    <id>urn:uuid:digest-2024-04-06T10:00:00Z</id>
+    <published>2024-04-06T10:00:00Z</published>
+    <content type="html">
+      <h1><a href="http://example.org/2024/03/31/item2">March 31, Item 2 - Summary and Published</a></h1>
+      <p>Published: 2024-03-31T14:00:00Z</p>
+      <p>March 31, Item 2 summary.</p>
+
+      <h1><a href="http://example.org/2024/03/31/item1">March 31, Item 1 - HTML Content</a></h1>
+      <p>Updated: 2024-03-31T10:00:00Z</p>
+      <p>March 31, Item 1 <a href="http://example.org">link</a>.</p>
+    </content>
+  </entry>
+
+  <entry>
+    <title>Weekly digest for 09 Mar 2024</title>
+    <id>urn:uuid:digest-2024-03-09T10:00:00Z</id>
+    <published>2024-03-09T10:00:00Z</published>
+    <content type="html">
+      <h1><a href="http://example.org/2024/03/02/item2">March 2, Item 2 - Updated and Published</a></h1>
+      <p>Published: 2024-03-02T13:00:00Z</p>
+      <p>Ut enim ad minim veniam.</p>
+    </content>
+  </entry>
+
+  <entry>
+    <title>Weekly digest for 02 Mar 2024</title>
+    <id>urn:uuid:digest-2024-03-02T10:00:00Z</id>
+    <published>2024-03-02T10:00:00Z</published>
+    <content type="html">
+      <h1><a href="http://example.org/2024/03/02/item1">March 2, Item 1 - Both Summary and Content</a></h1>
+      <p>Published: 2024-03-02T09:00:00Z</p>
+      <p>Incididunt ut labore et dolore magna aliqua.</p>
+
+      <h1><a href="http://example.org/2024/03/01/item2">March 1, Item 2 - Content Only</a></h1>
+      <p>Updated: 2024-03-01T14:00:00Z</p>
+      <p>Consectetur adipiscing elit. <strong>Some bold text.</strong></p>
+
+      <h1><a href="http://example.org/2024/03/01/item1">March 1, Item 1 - Summary Only</a></h1>
+      <p>Published: 2024-03-01T10:00:00Z</p>
+      <p>Lorem ipsum dolor sit amet.</p>
+
+      <h1><a href="http://example.org/2024/02/29/item2">February 29, Item 2 -  Just Updated</a></h1>
+      <p>Updated: 2024-02-29T14:00:00Z</p>
+      <p>Summary for Feb 29, Item 2.</p>
+
+      <h1><a href="http://example.org/2024/02/29/item1">February 29, Item 1 -  Both, Different Dates</a></h1>
+      <p>Published: 2024-02-28T22:00:00Z</p>
+      <p>Content <em>with</em> HTML.</p>
+    </content>
+  </entry>
+
+  <entry>
+    <title>Weekly digest for 03 Feb 2024</title>
+    <id>urn:uuid:digest-2024-02-03T10:00:00Z</id>
+    <published>2024-02-03T10:00:00Z</published>
+    <content type="html">
+      <h1><a href="http://example.org/2024/02/01/item2">February 1, Item 2 - Plain Text Content</a></h1>
+      <p>Published: 2024-02-01T14:00:00Z</p>
+      <p>February 1, Item 2 content.</p>
+
+      <h1><a href="http://example.org/2024/02/01/item1">February 1, Item 1 - Summary and Updated</a></h1>
+      <p>Updated: 2024-02-01T10:00:00Z</p>
+      <p>February 1, Item 1 summary.</p>
+
+      <h1><a href="http://example.org/2024/01/31/item2">January 31, Item 2 -  Just Content</a></h1>
+      <p>Updated: 2024-01-31T14:00:00Z</p>
+      <p>January 31, Item 2 plain text content.</p>
+
+      <h1><a href="http://example.org/2024/01/31/item1">January 31, Item 1 - Both Dates and Summary</a></h1>
+      <p>Published: 2024-01-31T09:30:00Z</p>
+      <p>January 31, Item 1 summary.</p>
+    </content>
+  </entry>
+
+  <entry>
+    <title>Weekly digest for 06 Jan 2024</title>
+    <id>urn:uuid:digest-2024-01-06T10:00:00Z</id>
+    <published>2024-01-06T10:00:00Z</published>
+    <content type="html">
+      <h1><a href="http://example.org/2024/01/01/item2">January 1, Item 2 - Content with HTML</a></h1>
+      <p>Updated: 2024-01-01T14:00:00Z</p>
+      <p>January 1, Item 2 <strong>content</strong>.</p>
+
+      <h1><a href="http://example.org/2024/01/01/item1">January 1, Item 1 - Summary</a></h1>
+      <p>Published: 2024-01-01T10:00:00Z</p>
+      <p>January 1, Item 1 summary.</p>
+    </content>
+  </entry>
+
+</feed>
