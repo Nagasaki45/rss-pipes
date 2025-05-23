@@ -28,6 +28,8 @@
     <published>{{ digest.date | dt_isoformat }}</published>
     <content type="html">
     {%- for entry in digest.entries %}
+      {% autoescape false %}
+      {% filter forceescape %}
       <h1><a href="{{ entry.link }}">{{ entry.title }}</a></h1>
       {%- if entry.published %}
       <p>Published: {{ entry.published }}</p>
@@ -40,6 +42,8 @@
       {%- else %}
       <p>{{ entry.content }}</p>
       {%- endif %}
+      {% endfilter %}
+      {% endautoescape %}
 
     {%- endfor %}
     </content>

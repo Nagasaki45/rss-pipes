@@ -47,7 +47,7 @@ def dt_readable_date(dt: datetime) -> str:
 
 # Initialize Jinja2 environment
 template_dir = os.path.join(os.path.dirname(__file__), "templates")
-jinja_env = Environment(loader=FileSystemLoader(template_dir))
+jinja_env = Environment(loader=FileSystemLoader(template_dir), autoescape=True)
 jinja_env.filters["dt_isoformat"] = dt_isoformat
 jinja_env.filters["dt_readable_date"] = dt_readable_date
 
@@ -56,7 +56,7 @@ async def digest_feed(feed_url: str, schedule: Schedule):
     """Fetch an RSS/Atom feed and generate a digest feed based on the given schedule."""
     feed = await _fetch_feed(feed_url)
     template_context = _prepare_template_context(schedule, feed)
-    template = jinja_env.get_template("atom_feed.xml")
+    template = jinja_env.get_template("atom.xml.jinja2")
     return template.render(**template_context)
 
 

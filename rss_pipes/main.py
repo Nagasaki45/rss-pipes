@@ -1,7 +1,7 @@
 from typing import Annotated
 
 import httpx
-from fastapi import FastAPI, HTTPException, Query, Request
+from fastapi import FastAPI, HTTPException, Query, Request, Response
 
 from .digest import FeedParsingError, digest_feed
 from .schedule import Schedule
@@ -38,4 +38,5 @@ async def digest(
     except ValueError as e:
         raise HTTPException(status_code=422, detail=str(e))
 
-    return await digest_feed(feed_url, schedule)
+    content = await digest_feed(feed_url, schedule)
+    return Response(content=content, media_type="application/xml")

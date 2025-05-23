@@ -14,13 +14,13 @@
     <id>urn:uuid:digest-2024-04-06T10:00:00Z</id>
     <published>2024-04-06T10:00:00Z</published>
     <content type="html">
-      <h1><a href="http://example.org/2024/03/31/item2">March 31, Item 2 - Summary and Published</a></h1>
-      <p>Published: 2024-03-31T14:00:00Z</p>
-      <p>March 31, Item 2 summary.</p>
+      &lt;h1&gt;&lt;a href="http://example.org/2024/03/31/item2"&gt;March 31, Item 2 - Summary and Published&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Published: 2024-03-31T14:00:00Z&lt;/p&gt;
+      &lt;p&gt;March 31, Item 2 summary.&lt;/p&gt;
 
-      <h1><a href="http://example.org/2024/03/31/item1">March 31, Item 1 - HTML Content</a></h1>
-      <p>Updated: 2024-03-31T10:00:00Z</p>
-      <p>March 31, Item 1 <a href="http://example.org">link</a>.</p>
+      &lt;h1&gt;&lt;a href="http://example.org/2024/03/31/item1"&gt;March 31, Item 1 - HTML Content&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Updated: 2024-03-31T10:00:00Z&lt;/p&gt;
+      &lt;p&gt;March 31, Item 1 &lt;a href="http://example.org"&gt;link&lt;/a&gt;.&lt;/p&gt;
     </content>
   </entry>
 
@@ -29,9 +29,9 @@
     <id>urn:uuid:digest-2024-03-09T10:00:00Z</id>
     <published>2024-03-09T10:00:00Z</published>
     <content type="html">
-      <h1><a href="http://example.org/2024/03/02/item2">March 2, Item 2 - Updated and Published</a></h1>
-      <p>Published: 2024-03-02T13:00:00Z</p>
-      <p>Ut enim ad minim veniam.</p>
+      &lt;h1&gt;&lt;a href="http://example.org/2024/03/02/item2"&gt;March 2, Item 2 - Updated and Published&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Published: 2024-03-02T13:00:00Z&lt;/p&gt;
+      &lt;p&gt;Ut enim ad minim veniam.&lt;/p&gt;
     </content>
   </entry>
 
@@ -40,25 +40,25 @@
     <id>urn:uuid:digest-2024-03-02T10:00:00Z</id>
     <published>2024-03-02T10:00:00Z</published>
     <content type="html">
-      <h1><a href="http://example.org/2024/03/02/item1">March 2, Item 1 - Both Summary and Content</a></h1>
-      <p>Published: 2024-03-02T09:00:00Z</p>
-      <p>Incididunt ut labore et dolore magna aliqua.</p>
+      &lt;h1&gt;&lt;a href="http://example.org/2024/03/02/item1"&gt;March 2, Item 1 - Both Summary and Content&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Published: 2024-03-02T09:00:00Z&lt;/p&gt;
+      &lt;p&gt;Incididunt ut labore et dolore magna aliqua.&lt;/p&gt;
 
-      <h1><a href="http://example.org/2024/03/01/item2">March 1, Item 2 - Content Only</a></h1>
-      <p>Updated: 2024-03-01T14:00:00Z</p>
-      <p>Consectetur adipiscing elit. <strong>Some bold text.</strong></p>
+      &lt;h1&gt;&lt;a href="http://example.org/2024/03/01/item2"&gt;March 1, Item 2 - Content Only&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Updated: 2024-03-01T14:00:00Z&lt;/p&gt;
+      &lt;p&gt;Consectetur adipiscing elit. &lt;strong&gt;Some bold text.&lt;/strong&gt;&lt;/p&gt;
 
-      <h1><a href="http://example.org/2024/03/01/item1">March 1, Item 1 - Summary Only</a></h1>
-      <p>Published: 2024-03-01T10:00:00Z</p>
-      <p>Lorem ipsum dolor sit amet.</p>
+      &lt;h1&gt;&lt;a href="http://example.org/2024/03/01/item1"&gt;March 1, Item 1 - Summary Only&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Published: 2024-03-01T10:00:00Z&lt;/p&gt;
+      &lt;p&gt;Lorem ipsum dolor sit amet.&lt;/p&gt;
 
-      <h1><a href="http://example.org/2024/02/29/item2">February 29, Item 2 -  Just Updated</a></h1>
-      <p>Updated: 2024-02-29T14:00:00Z</p>
-      <p>Summary for Feb 29, Item 2.</p>
+      &lt;h1&gt;&lt;a href="http://example.org/2024/02/29/item2"&gt;February 29, Item 2 -  Just Updated&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Updated: 2024-02-29T14:00:00Z&lt;/p&gt;
+      &lt;p&gt;Summary for Feb 29, Item 2.&lt;/p&gt;
 
-      <h1><a href="http://example.org/2024/02/29/item1">February 29, Item 1 -  Both, Different Dates</a></h1>
-      <p>Published: 2024-02-28T22:00:00Z</p>
-      <p>Content <em>with</em> HTML.</p>
+      &lt;h1&gt;&lt;a href="http://example.org/2024/02/29/item1"&gt;February 29, Item 1 -  Both, Different Dates&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Published: 2024-02-28T22:00:00Z&lt;/p&gt;
+      &lt;p&gt;Content &lt;em&gt;with&lt;/em&gt; HTML.&lt;/p&gt;
     </content>
   </entry>
 
@@ -67,21 +67,21 @@
     <id>urn:uuid:digest-2024-02-03T10:00:00Z</id>
     <published>2024-02-03T10:00:00Z</published>
     <content type="html">
-      <h1><a href="http://example.org/2024/02/01/item2">February 1, Item 2 - Plain Text Content</a></h1>
-      <p>Published: 2024-02-01T14:00:00Z</p>
-      <p>February 1, Item 2 content.</p>
+      &lt;h1&gt;&lt;a href="http://example.org/2024/02/01/item2"&gt;February 1, Item 2 - Plain Text Content&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Published: 2024-02-01T14:00:00Z&lt;/p&gt;
+      &lt;p&gt;February 1, Item 2 content.&lt;/p&gt;
 
-      <h1><a href="http://example.org/2024/02/01/item1">February 1, Item 1 - Summary and Updated</a></h1>
-      <p>Updated: 2024-02-01T10:00:00Z</p>
-      <p>February 1, Item 1 summary.</p>
+      &lt;h1&gt;&lt;a href="http://example.org/2024/02/01/item1"&gt;February 1, Item 1 - Summary and Updated&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Updated: 2024-02-01T10:00:00Z&lt;/p&gt;
+      &lt;p&gt;February 1, Item 1 summary.&lt;/p&gt;
 
-      <h1><a href="http://example.org/2024/01/31/item2">January 31, Item 2 -  Just Content</a></h1>
-      <p>Updated: 2024-01-31T14:00:00Z</p>
-      <p>January 31, Item 2 plain text content.</p>
+      &lt;h1&gt;&lt;a href="http://example.org/2024/01/31/item2"&gt;January 31, Item 2 -  Just Content&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Updated: 2024-01-31T14:00:00Z&lt;/p&gt;
+      &lt;p&gt;January 31, Item 2 plain text content.&lt;/p&gt;
 
-      <h1><a href="http://example.org/2024/01/31/item1">January 31, Item 1 - Both Dates and Summary</a></h1>
-      <p>Published: 2024-01-31T09:30:00Z</p>
-      <p>January 31, Item 1 summary.</p>
+      &lt;h1&gt;&lt;a href="http://example.org/2024/01/31/item1"&gt;January 31, Item 1 - Both Dates and Summary&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Published: 2024-01-31T09:30:00Z&lt;/p&gt;
+      &lt;p&gt;January 31, Item 1 summary.&lt;/p&gt;
     </content>
   </entry>
 
@@ -90,13 +90,13 @@
     <id>urn:uuid:digest-2024-01-06T10:00:00Z</id>
     <published>2024-01-06T10:00:00Z</published>
     <content type="html">
-      <h1><a href="http://example.org/2024/01/01/item2">January 1, Item 2 - Content with HTML</a></h1>
-      <p>Updated: 2024-01-01T14:00:00Z</p>
-      <p>January 1, Item 2 <strong>content</strong>.</p>
+      &lt;h1&gt;&lt;a href=&quot;http://example.org/2024/01/01/item2&quot;&gt;January 1, Item 2 - Content with HTML&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Updated: 2024-01-01T14:00:00Z&lt;/p&gt;
+      &lt;p&gt;January 1, Item 2 &lt;strong&gt;content&lt;/strong&gt;.&lt;/p&gt;
 
-      <h1><a href="http://example.org/2024/01/01/item1">January 1, Item 1 - Summary</a></h1>
-      <p>Published: 2024-01-01T10:00:00Z</p>
-      <p>January 1, Item 1 summary.</p>
+      &lt;h1&gt;&lt;a href=&quot;http://example.org/2024/01/01/item1&quot;&gt;January 1, Item 1 - Summary&lt;/a&gt;&lt;/h1&gt;
+      &lt;p&gt;Published: 2024-01-01T10:00:00Z&lt;/p&gt;
+      &lt;p&gt;January 1, Item 1 summary.&lt;/p&gt;
     </content>
   </entry>
 
