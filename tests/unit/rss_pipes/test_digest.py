@@ -19,7 +19,7 @@ async def test_digest(httpx_mock):
     with open(FIXTURES_DIR / "weekly_atom.xml") as f:
         expected_output_feed = f.read()
 
-    feed_url = "https://example.org/atom.xml"
+    feed_url = "http://example.org/atom.xml"
     httpx_mock.add_response(url=feed_url, text=input_feed)
     schedule = Schedule.validate("weekly-sat-10:00")
 

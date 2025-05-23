@@ -20,7 +20,7 @@
 
       &lt;h1&gt;&lt;a href="http://example.org/2024/03/31/item1"&gt;March 31, Item 1 - HTML Content&lt;/a&gt;&lt;/h1&gt;
       &lt;p&gt;Updated: 2024-03-31T10:00:00Z&lt;/p&gt;
-      &lt;p&gt;March 31, Item 1 &lt;a href="http://example.org"&gt;link&lt;/a&gt;.&lt;/p&gt;
+      &lt;p&gt;March 31, Item 1 &lt;a href="http://example.org/articles"&gt;link&lt;/a&gt;.&lt;/p&gt;
     </content>
   </entry>
 

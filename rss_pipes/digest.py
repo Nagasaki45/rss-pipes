@@ -1,9 +1,12 @@
 import os
 from datetime import datetime
 from typing import NotRequired, TypedDict
+from urllib.parse import urljoin, urlparse, urlunparse
 
 import feedparser  # type: ignore
 import httpx
+from bs4 import BeautifulSoup
+from bs4.element import Tag
 from jinja2 import Environment, FileSystemLoader
 
 from .schedule import Schedule, apply_schedule
@@ -55,12 +58,15 @@ jinja_env.filters["dt_readable_date"] = dt_readable_date
 async def digest_feed(feed_url: str, schedule: Schedule):
     """Fetch an RSS/Atom feed and generate a digest feed based on the given schedule."""
     feed = await _fetch_feed(feed_url)
-    template_context = _prepare_template_context(schedule, feed)
+    base_url = _get_base_url(feed_url)
+    template_context = _prepare_template_context(schedule, feed, base_url)
     template = jinja_env.get_template("atom.xml.jinja2")
     return template.render(**template_context)
 
 
-def _prepare_template_context(schedule: Schedule, feed) -> TemplateContext:
+def _prepare_template_context(
+    schedule: Schedule, feed, base_url: str | None
+) -> TemplateContext:
     authors = _extract_authors(feed)
     items = _extract_datetime_entry_pairs(feed)
 
@@ -73,7 +79,7 @@ def _prepare_template_context(schedule: Schedule, feed) -> TemplateContext:
         # Create the digest entry
         digest_entry: DigestEntry = {
             "date": occurrence,
-            "entries": [_extract_entry_data(e) for _, e in sorted_items],
+            "entries": [_extract_entry_data(e, base_url) for _, e in sorted_items],
         }
         digests.append((occurrence, digest_entry))
 
@@ -133,7 +139,7 @@ def _extract_datetime_entry_pairs(feed):
     return items
 
 
-def _extract_entry_data(entry) -> EntryData:
+def _extract_entry_data(entry, base_url: str | None) -> EntryData:
     # Get content or summary
     item_content = ""
     if hasattr(entry, "content") and entry.content:
@@ -141,10 +147,16 @@ def _extract_entry_data(entry) -> EntryData:
     elif hasattr(entry, "summary"):
         item_content = entry.summary
 
+    if base_url:
+        item_content = _rewrite_relative_urls(item_content, base_url)
+        link = urljoin(base_url, entry.link)
+    else:
+        link = entry.link
+
     # Extract raw data for template
     entry_data: EntryData = {
         "title": entry.title,
-        "link": entry.link,
+        "link": link,
         "content": item_content,
     }
 
@@ -155,3 +167,27 @@ def _extract_entry_data(entry) -> EntryData:
         entry_data["updated"] = entry.updated
 
     return entry_data
+
+
+def _rewrite_relative_urls(html: str, base_url: str) -> str:
+    soup = BeautifulSoup(html, "html.parser")
+    for attr in ["src", "href"]:
+        for tag in soup.find_all(attrs={attr: True}):
+            if not isinstance(tag, Tag):
+                continue
+            val = tag[attr]
+            if isinstance(val, str) and not val.startswith(
+                ("http://", "https://", "//")
+            ):
+                tag[attr] = urljoin(base_url, val)
+    return str(soup)
+
+
+def _get_base_url(absolute_url: str) -> str | None:
+    parsed_url = urlparse(absolute_url)
+
+    if parsed_url.scheme and parsed_url.netloc:
+        # Replace all but scheme and netloc
+        base_url_parts = parsed_url._replace(path="", params="", query="", fragment="")
+        return urlunparse(base_url_parts)
+    return None

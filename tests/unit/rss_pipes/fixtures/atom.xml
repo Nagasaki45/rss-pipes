@@ -46,7 +46,7 @@
     <link href="http://example.org/2024/03/31/item1"/>
     <id>urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a-20240331-1</id>
     <updated>2024-03-31T10:00:00Z</updated>
-    <content type="html"><p>March 31, Item 1 <a href="http://example.org">link</a>.</p></content>
+    <content type="html"><p>March 31, Item 1 <a href="/articles">link</a>.</p></content>
   </entry>
   <entry>
     <title>March 31, Item 2 - Summary and Published</title>
