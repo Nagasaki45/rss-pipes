@@ -1,0 +1,4 @@
+*
+!rss_pipes/
+!pyproject.toml
+!uv.lock
