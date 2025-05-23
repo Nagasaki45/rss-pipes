@@ -1,3 +1,4 @@
+import calendar
 from datetime import datetime, time, timedelta
 from enum import Enum
 from typing import Iterator, assert_never, cast
@@ -10,6 +11,7 @@ _VALID_WEEK_DAYS = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
 class Frequency(str, Enum):
     DAILY = "daily"
     WEEKLY = "weekly"
+    MONTHLY = "monthly"
 
 
 def _parse_schedule_string(v: str) -> tuple[Frequency, time, str | int | None]:
@@ -33,6 +35,18 @@ def _parse_schedule_string(v: str) -> tuple[Frequency, time, str | int | None]:
         day = parts[1].lower()
         if day not in _VALID_WEEK_DAYS:
             raise ValueError("Invalid weekly day")
+
+    elif frequency == Frequency.MONTHLY:
+        if len(parts) != 3:
+            raise ValueError("Monthly schedule must specify a day")
+        try:
+            day = int(parts[1])
+            if day < 1 or day > 31:
+                raise ValueError("Monthly day must be between 1 and 31")
+        except ValueError as e:
+            if "invalid literal" in str(e):
+                raise ValueError("Monthly day must be a number")
+            raise
 
     else:
         assert_never(frequency)
@@ -97,6 +111,42 @@ def _generate_weekly_occurrences(
         scheduled_time += timedelta(days=7)
 
 
+def _generate_monthly_occurrences(
+    schedule: Schedule, start_time: datetime
+) -> Iterator[datetime]:
+    target_day = cast(int, schedule.day)
+
+    # Start with the current month
+    year = start_time.year
+    month = start_time.month
+
+    while True:
+        # Get the number of days in this month
+        days_in_month = calendar.monthrange(year, month)[1]
+
+        # Use the target day or the last day of the month, whichever is smaller
+        actual_day = min(target_day, days_in_month)
+
+        scheduled_time = start_time.replace(
+            year=year,
+            month=month,
+            day=actual_day,
+            hour=schedule.time.hour,
+            minute=schedule.time.minute,
+        )
+
+        # Only yield if this occurrence is at or after the start time
+        if scheduled_time >= start_time:
+            yield scheduled_time
+
+        # Move to next month
+        if month == 12:
+            month = 1
+            year += 1
+        else:
+            month += 1
+
+
 def generate_occurrences(
     schedule: Schedule, start_date: datetime
 ) -> Iterator[datetime]:
@@ -105,6 +155,8 @@ def generate_occurrences(
         yield from _generate_daily_occurrences(schedule, start_date)
     elif schedule.frequency == Frequency.WEEKLY:
         yield from _generate_weekly_occurrences(schedule, start_date)
+    elif schedule.frequency == Frequency.MONTHLY:
+        yield from _generate_monthly_occurrences(schedule, start_date)
     else:
         assert_never(schedule.frequency)
 

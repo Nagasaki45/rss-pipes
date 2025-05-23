@@ -14,6 +14,14 @@ from rss_pipes.schedule import Frequency, Schedule, apply_schedule, generate_occ
             "weekly-mon-15:00",
             {"frequency": Frequency.WEEKLY, "day": "mon", "time": time(15, 0)},
         ),
+        (
+            "monthly-15-09:00",
+            {"frequency": Frequency.MONTHLY, "day": 15, "time": time(9, 0)},
+        ),
+        (
+            "monthly-31-23:59",
+            {"frequency": Frequency.MONTHLY, "day": 31, "time": time(23, 59)},
+        ),
     ],
 )
 def test_valid_schedule(schedule_str, expected):
@@ -31,6 +39,10 @@ def test_valid_schedule(schedule_str, expected):
         ("daily-25:00", ValueError, "Invalid time format"),
         ("weekly-9:00", ValueError, "Weekly schedule must specify a day"),
         ("weekly-1-9:00", ValueError, "Invalid weekly day"),
+        ("monthly-9:00", ValueError, "Monthly schedule must specify a day"),
+        ("monthly-0-09:00", ValueError, "Monthly day must be between 1 and 31"),
+        ("monthly-32-09:00", ValueError, "Monthly day must be between 1 and 31"),
+        ("monthly-abc-09:00", ValueError, "Monthly day must be a number"),
     ],
 )
 def test_invalid_schedule(schedule_str, error_type, error_message):
@@ -60,6 +72,39 @@ def test_invalid_schedule(schedule_str, error_type, error_message):
                 datetime(2025, 1, 31, 9, 0),
                 datetime(2025, 2, 7, 9, 0),
                 datetime(2025, 2, 14, 9, 0),
+                # ...
+            ],
+        ),
+        # Monthly - normal case
+        (
+            Schedule.validate("monthly-15-9:00"),
+            datetime(2025, 1, 10, 0, 0),
+            [
+                datetime(2025, 1, 15, 9, 0),
+                datetime(2025, 2, 15, 9, 0),
+                datetime(2025, 3, 15, 9, 0),
+                # ...
+            ],
+        ),
+        # Monthly - day 31 in February (should use last day)
+        (
+            Schedule.validate("monthly-31-9:00"),
+            datetime(2025, 2, 1, 0, 0),
+            [
+                datetime(2025, 2, 28, 9, 0),  # Feb 2025 has 28 days
+                datetime(2025, 3, 31, 9, 0),
+                datetime(2025, 4, 30, 9, 0),  # April has 30 days
+                # ...
+            ],
+        ),
+        # Monthly - leap year
+        (
+            Schedule.validate("monthly-29-9:00"),
+            datetime(2024, 2, 1, 0, 0),  # 2024 is a leap year
+            [
+                datetime(2024, 2, 29, 9, 0),  # Feb 2024 has 29 days
+                datetime(2024, 3, 29, 9, 0),
+                datetime(2024, 4, 29, 9, 0),
                 # ...
             ],
         ),
@@ -113,6 +158,38 @@ def test_generate_occurrences(schedule, start_date, occurrences):
                     datetime(2025, 1, 3, 9, 0),
                     [
                         (datetime(2025, 1, 2, 10, 0), "Oops, missed the alarm"),
+                    ],
+                ),
+            ],
+        ),
+        (
+            Schedule.validate("monthly-15-9:00"),
+            [
+                (datetime(2025, 1, 5, 0, 0), "Early January"),
+                (datetime(2025, 1, 10, 0, 0), "Mid January"),
+                (datetime(2025, 1, 20, 0, 0), "Late January"),
+                (datetime(2025, 2, 5, 0, 0), "Early February"),
+                (datetime(2025, 2, 20, 0, 0), "Late February"),
+            ],
+            [
+                (
+                    datetime(2025, 1, 15, 9, 0),
+                    [
+                        (datetime(2025, 1, 5, 0, 0), "Early January"),
+                        (datetime(2025, 1, 10, 0, 0), "Mid January"),
+                    ],
+                ),
+                (
+                    datetime(2025, 2, 15, 9, 0),
+                    [
+                        (datetime(2025, 1, 20, 0, 0), "Late January"),
+                        (datetime(2025, 2, 5, 0, 0), "Early February"),
+                    ],
+                ),
+                (
+                    datetime(2025, 3, 15, 9, 0),
+                    [
+                        (datetime(2025, 2, 20, 0, 0), "Late February"),
                     ],
                 ),
             ],

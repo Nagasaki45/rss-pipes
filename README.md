@@ -7,10 +7,10 @@ Composable RSS feed utilities inspired by Unix pipes. RSS-Pipes lets you transfo
 ## Features
 
 - **Digest Generation**
-  Aggregate feed entries into daily or weekly digests.
+  Aggregate feed entries into daily, weekly, or monthly digests.
 
 - **Flexible Scheduling**
-  Use human-readable schedule strings (`daily-HH:MM`, `weekly-{mon|tue|…|sun}-HH:MM`).
+  Use human-readable schedule strings (`daily-HH:MM`, `weekly-{mon|tue|…|sun}-HH:MM`, `monthly-{day}-HH:MM`).
 
 - **Composable**
   Pipe one endpoint's URL into another (e.g. digest → summarise).
@@ -56,6 +56,7 @@ GET /digest/{feed_url:path}?schedule={schedule}
 - **schedule**: schedule string, e.g.:
   - `daily-09:00`
   - `weekly-sat-10:00`
+  - `monthly-15-09:00`
 
 Example:
 
@@ -70,12 +71,15 @@ curl \
 
 ### Schedule Format
 
-| Type   | Syntax             | Description                  |
-| ------ | ------------------ | ---------------------------- |
-| Daily  | `daily-HH:MM`      | Every day at hour:minute    |
-| Weekly | `weekly-<day>-HH:MM` | Every week on `<day>` at time  |
+| Type    | Syntax                | Description                           |
+| ------- | --------------------- | ------------------------------------- |
+| Daily   | `daily-HH:MM`         | Every day at hour:minute             |
+| Weekly  | `weekly-<day>-HH:MM`  | Every week on `<day>` at time        |
+| Monthly | `monthly-<day>-HH:MM` | Every month on day `<day>` at time   |
 
-Valid days: `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`.
+Valid days for weekly: `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`.
+
+Valid days for monthly: `1` to `31`. For months shorter than the specified day, the occurrence will be on the last day of that month.
 
 ---
 
